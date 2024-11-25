@@ -1,1 +1,48 @@
-export class Cv {}
+import { SkillEntity } from "src/skill/entities/skill.entity";
+import { UserEntity } from "src/user/entities/user.entity";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+
+ @Entity('cv')
+export class CvEntity {
+     [x: string]: any;
+     @PrimaryGeneratedColumn()
+     id: number;
+
+     @Column()
+     name: string;
+
+     @Column()
+     firstname: string;
+
+     @Column()
+     age: number;
+
+     @Column()
+     cin: string;
+
+     @Column()
+     job: string;
+
+     @Column()
+     path: string;
+
+     @ManyToOne(
+        () =>UserEntity,
+        (user: UserEntity) => user.cvs,
+     ) user: UserEntity;
+
+     @ManyToMany( () => SkillEntity )
+    @JoinTable({
+        name: "skill_cv",
+        joinColumn: {
+            name: "cv_id",
+            referencedColumnName: "id"
+        },
+        inverseJoinColumn: {
+            name: "skill_id",
+            referencedColumnName: "id"
+
+        }
+        }) skills: SkillEntity[];
+}
+
