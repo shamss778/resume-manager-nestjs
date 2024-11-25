@@ -1,12 +1,11 @@
-import { SkillEntity } from "src/skill/entities/skill.entity";
-import { UserEntity } from "src/user/entities/user.entity";
+import { CrudEntity } from "../../CRUD/crud.entity";
+import { SkillEntity } from "../../skill/entities/skill.entity";
+import { UserEntity } from "../../user/entities/user.entity";
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
  @Entity('cv')
-export class CvEntity {
-     [x: string]: any;
-     @PrimaryGeneratedColumn()
-     id: number;
+export class CvEntity extends CrudEntity {
+     
 
      @Column()
      name: string;

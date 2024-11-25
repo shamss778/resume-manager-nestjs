@@ -1,10 +1,9 @@
-import { CvEntity } from "src/cv/entities/cv.entity";
+import { CvEntity } from "../../cv/entities/cv.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { CrudEntity } from "../../CRUD/crud.entity";
 
 @Entity('user')
-export class UserEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+export class UserEntity extends CrudEntity {
 
     @Column()
     username: string;
@@ -17,6 +16,6 @@ export class UserEntity {
 
     @OneToMany(
         () => CvEntity, 
-        (cv: CvEntity) => cv.user,)
+        (cv: CvEntity) => cv.user ,)
     cvs: CvEntity[];
 }
