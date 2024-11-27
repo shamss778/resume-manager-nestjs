@@ -28,9 +28,18 @@ export class CvEntity extends CrudEntity {
      @ManyToOne(
         () =>UserEntity,
         (user: UserEntity) => user.cvs,
+        {
+            cascade: true,
+            eager: true
+        },
      ) user: UserEntity;
 
-     @ManyToMany( () => SkillEntity )
+     @ManyToMany( 
+        () => SkillEntity,
+        {
+            cascade: true,
+            eager: true
+        } )
     @JoinTable({
         name: "skill_cv",
         joinColumn: {
